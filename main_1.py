@@ -21,12 +21,15 @@ HUGGINGFACE_API_TOKEN = os.getenv("HUGGINGFACEHUB_API_TOKEN")
 # Memory Setup
 memory = ConversationBufferMemory()
 
-model_name = "mistralai/Mistral-7B-Instruct-v0.2"
+model_name = "openai-community/gpt2"
+# "mistralai/Mistral-7B-Instruct-v0.2"
 
 # Models
 text_model = pipeline("text-generation", model=model_name, use_auth_token=HUGGINGFACE_API_TOKEN)
-image_captioning = pipeline("image-to-text", model="Salesforce/blip-image-captioning-base", use_auth_token=HUGGINGFACE_API_TOKEN)
+image_captioning = pipeline("image-to-text", model="nlpconnect/vit-gpt2-image-captioning", token=HUGGINGFACE_API_TOKEN)
 speech_recognition = pipeline("automatic-speech-recognition", model="facebook/wav2vec2-large-960h", use_auth_token=HUGGINGFACE_API_TOKEN)
+  
+#image_model=Salesforce/blip-image-captioning-base
 
 def detect_and_translate(text, target_lang="en"):
     lang = detect(text)
